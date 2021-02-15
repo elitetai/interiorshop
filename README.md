@@ -9,6 +9,7 @@ Technologies Involved:
 -Stripe (Payment gateway)
 -Sendgrid (for sending e-mails)
 
+
 Server (for production):
 
 -Ubuntu 20.04
