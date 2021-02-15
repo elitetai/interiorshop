@@ -6,9 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}Interiorshop</title>
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script src="{% static 'scripts/main.js' %}"></script>
+
+    <title>{% block title %}{% endblock %}Interiorshop</title>
 </head>
 
 <body>
@@ -23,7 +25,7 @@
             </a>
         </div>
 
-        <div class="navbar-menu">
+        <div class="navbar-menu" id="main-navbar">
             <div class="navbar-end">
                 <a href="{% url 'contact' %}" class="navbar-item">Contact</a>
             </div>
