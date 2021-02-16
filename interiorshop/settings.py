@@ -32,6 +32,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+LOGIN_URL = 'login' # redirect of url name when login_required is present
+LOGIN_REDIRECT_URL = 'vendor_admin'
+LOGOUT_REDIRECT_URL = 'frontpage'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.core',
     'apps.vendor',
+    'apps.product',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +133,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / '/media/'
