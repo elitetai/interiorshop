@@ -1,5 +1,5 @@
 from io import BytesIO
-from PIL import Image
+from PIL import Image # Under Pillow library
 
 from django.core.files import File
 from django.db import models
@@ -50,12 +50,21 @@ class Product(models.Model):
 
 
     def make_thumbnail(self, image, size=(300, 200)):
-        img = Image.open(image)
-        img.convert('RGB')
-        img.thumbnail(size)
+        with Image.open(image) as img:
+            # return a converted copy of the image, with the mode of RGB, a true color mode
+            img.convert('RGB')
+            img.thumbnail(size)
+            # BytesIO() - a binary stream (file object) using an in-memory bytes buffer
+            thumb_io = BytesIO()
+            # The first save() param is called fp - which takes in filename (string), pathlib.Path object or file object.
+            # JPEG's save() method supports quality param/option - default is 75
+            img.save(thumb_io, 'JPEG', quality=85)
+            # print(thumb_io.getvalue())
 
-        thumb_io = BytesIO()
-        img.save(thumb_io, 'JPEG', quality=85)
-
+        # At this point, thumb_io has the bytes value of the image (try print as shown above)
+        # It is then attached to a File class wrapper of Python's file object with name param
+        # name = The name of the file including the relative path from MEDIA_ROOT
+        # image.name = FieldFile.name (The name of the file including the relative path from the root of the Storage of the associated FileField)
         thumbnail = File(thumb_io, name=image.name)
+
         return thumbnail

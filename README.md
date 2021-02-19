@@ -17,3 +17,6 @@ Server (for production):
 - Nginx
 - Supervisor
 - PostgreSQL
+
+
+*Notes: This is a Django practice from a youtube tutorial
