@@ -18,7 +18,7 @@ def become_vendor(request):
             login(request, user)
 
             vendor = Vendor.objects.create(name=user.username, created_by=user)
-            return redirect('frontpage')
+            return redirect('core:frontpage')
 
     else: 
         form = UserCreationForm()
@@ -44,7 +44,7 @@ def add_product(request):
             product.slug = slugify(product.title)
             product.save()
 
-            return redirect('vendor_admin')
+            return redirect('vendor:vendor_admin')
     else: 
         form = ProductForm()
         

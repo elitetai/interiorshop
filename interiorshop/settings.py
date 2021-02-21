@@ -32,10 +32,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-LOGIN_URL = 'login' # redirect of url name when login_required is present
-LOGIN_REDIRECT_URL = 'vendor_admin'
-LOGOUT_REDIRECT_URL = 'frontpage'
+LOGIN_URL = 'vendor:login' # redirect of url name when login_required is present
+LOGIN_REDIRECT_URL = 'vendor:vendor_admin'
+LOGOUT_REDIRECT_URL = 'core:frontpage'
 
+SESSION_COOKIE_AGE = 86400 # 1 day in seconds (default is 2 weeks)
+CART_SESSION_ID = 'cart' # Custom ID (not related to Django)
 
 # Application definition
 
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.vendor',
     'apps.product',
+    'apps.cart',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +78,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'apps.product.context_processors.menu_categories',
+                'apps.cart.context_processors.cart',
             ],
         },
     },
