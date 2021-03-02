@@ -3,7 +3,7 @@
 This is an e-commerce app for multiple vendors to list their products (such as furniture), which is created with Django. 
 Below are the list of features:
 
-1. Vendor can signup, login and logout 
+1. Vendor can signup, login and logout. Vendor can edit name or email too.
 1. Vendor can post their products with an image, title, description and price
 1. Vendor can check their product listing, see their balance & paid amount and their order list
 1. Buyer can see a list of vendors with each of their product listing
