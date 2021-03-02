@@ -59,3 +59,8 @@
     animation-name: show-toast;
     animation-duration: 4s;
 }
+
+.my-orders {
+    max-height: 1025px;
+    overflow: auto;
+}

@@ -13,4 +13,6 @@ urlpatterns = [
 
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('login/', auth_views.LoginView.as_view(template_name='vendor/login.html'), name='login'),
+    path('<int:vendor_id>', views.vendor, name='vendor'),
+    path('', views.show_vendors, name='show_vendors'),
 ]

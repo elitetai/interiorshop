@@ -2,7 +2,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.text import slugify
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Vendor
 from apps.product.models import Product
@@ -87,3 +87,14 @@ def edit_vendor(request):
             return redirect('vendor:vendor_admin')
 
     return render(request, 'vendor/edit_vendor.html', {'vendor': vendor})
+
+def show_vendors(request):
+    vendors = Vendor.objects.all()
+
+    return render(request, 'vendor/show_vendors.html', {'vendors': vendors})
+
+def vendor(request, vendor_id):
+    vendor = get_object_or_404(Vendor, pk=vendor_id)
+
+    return render(request, 'vendor/vendor.html', {'vendor': vendor})
+    

@@ -7,44 +7,47 @@ from django.shortcuts import render, redirect
 from .cart import Cart
 from .forms import CheckoutForm
 
-from apps.order.utilities import checkout
+from apps.order.utilities import checkout, notify_customer, notify_vendor
 
 def cart_detail(request):
     cart = Cart(request)
 
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
-        
         if form.is_valid():
             stripe.api_key = settings.STRIPE_SECRET_KEY
 
             stripe_token = form.cleaned_data['stripe_token']
 
-            charge = stripe.Charge.create(
-                amount=int(cart.get_total_cost() * 100),
-                currency='USD',
-                description='Charge from Interiorshop',
-                source=stripe_token
-            )
+            try: 
+                charge = stripe.Charge.create(
+                    amount=int(cart.get_total_cost() * 100),
+                    currency='USD',
+                    description='Charge from Interiorshop',
+                    source=stripe_token
+                )
 
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            address = form.cleaned_data['address']
-            zipcode = form.cleaned_data['zipcode']
-            place = form.cleaned_data['place']
-            
-            order = checkout(request, first_name, last_name, email, address, zipcode, place, phone, cart.get_total_cost())
+                first_name = form.cleaned_data['first_name']
+                last_name = form.cleaned_data['last_name']
+                email = form.cleaned_data['email']
+                phone = form.cleaned_data['phone']
+                address = form.cleaned_data['address']
+                zipcode = form.cleaned_data['zipcode']
+                place = form.cleaned_data['place']
+                
+                order = checkout(request, first_name, last_name, email, address, zipcode, place, phone, cart.get_total_cost())
 
-            cart.clear()
+                cart.clear()
 
-            return redirect('cart:success')
-        # else: 
-            # messages.error
+                # email isn't used for setup yet
+                # notify_customer(order)
+                # notify_vendor(order)
+
+                return redirect('cart:success')
+            except Exception:
+                messages.error(request, 'There was something wrong with the payment')
     else:
         form = CheckoutForm()
-
 
     # Getting query params from request.GET
     remove_from_cart = request.GET.get('remove_from_cart', '')

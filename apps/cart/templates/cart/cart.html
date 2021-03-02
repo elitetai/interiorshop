@@ -56,15 +56,13 @@
         <form action="." method="post" id="payment-form">
             {% csrf_token %}
 
-            <!-- scroll down later -->
-
             {% if form.non_field_errors %}
                 <div class="notification is-danger">
                     {{ form.non_field_errors }}
                 </div>
             {% endif %}
             
-            {% if forms.errors %}
+            {% if form.errors %}
                 <div class="notification is-danger">
                     <ul>
                         {% for field in form %}
@@ -138,6 +136,7 @@
                 {% endfor %}
             {% endif %}
 
+            <div class="notification is-danger" id="card-errors" hidden></div>
 
             <div class="field">
                 <div class="control">
@@ -168,9 +167,10 @@
 
             stripe.createToken(card).then(function(result) {
                 if (result.error) {
-                    // var errorElement = document.getElementById('card-errors'); 
-                    // errorElement.textContent = result.error.message;
-                    alert(result.error.message)
+                    var errorElement = document.getElementById('card-errors'); 
+                    errorElement.textContent = result.error.message;
+                    errorElement.removeAttribute('hidden')
+                    // alert(result.error.message)
                 } else {
                     stripeTokenHandler(result.token);
                 }
