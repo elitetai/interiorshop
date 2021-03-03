@@ -37,4 +37,5 @@ Payment testing for Stripe:
 
 ## Deployed under Heroku 
 **[Click Here](https://interiorshop.herokuapp.com/)** (Please wait for it to start up from its dormant state)
+
 *Notes: This is a Django practice from a youtube tutorial
