@@ -4,7 +4,7 @@ This is an e-commerce app for multiple vendors to list their products (such as f
 Below are the list of features:
 
 1. Vendor can signup, login and logout. Vendor can edit name or email too.
-1. Vendor can post their products with an image, title, description and price
+1. Vendor can post their products ~~with an image~~ (not doable due to the restriction of media file storage in Heroku), title, description and price
 1. Vendor can check their product listing, see their balance & paid amount and their order list
 1. Buyer can see a list of vendors with each of their product listing
 1. Buyer can search the product based on either product title or product description 
