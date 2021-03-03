@@ -32,6 +32,8 @@ Payment testing for Stripe:
 > - CVC : 242
 > - ZIP : 42424
 
+*Notes: Do not add image for product listing
+
 
 Deployed under Heroku. **[Click Here](https://interiorshop.herokuapp.com/)** (Please wait for it to start up from its dormant state)
 
