@@ -35,6 +35,6 @@ Payment testing for Stripe:
 *Notes: Do not add image for product listing
 
 
-Deployed under Heroku. **[Click Here](https://interiorshop.herokuapp.com/)** (Please wait for it to start up from its dormant state)
-
+## Deployed under Heroku 
+**[Click Here](https://interiorshop.herokuapp.com/)** (Please wait for it to start up from its dormant state)
 *Notes: This is a Django practice from a youtube tutorial
